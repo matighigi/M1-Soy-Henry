@@ -15,12 +15,12 @@ function BinarioADecimal(num) {          // ejemp arr = [0, 1, 1, 0]
 
 function DecimalABinario(num) {
   // tu codigo aca
-var nuevoArray = [];
+var bin = [];
 while (num !== 0) {                    //mientras num no sea = 0
-  nuevoArray.unshift(num%2)            //agregamos los restos de atras para delante
+  bin.unshift(num%2)            //agregamos los restos de atras para delante
   num = Math.floor(num/2)
 }
-return nuevoArray.join ("")
+return bin.join ("")
 }
 
 
