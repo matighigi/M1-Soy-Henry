@@ -1,0 +1,12 @@
+//Alternativa primer ejercicio :            // ejemp arr = [0, 1, 1, 0] -----> (nuevoArray.length - 1 - i)-----> 4 - 1 - i (da de resultado la posicion binaria)
+
+// var nuevoArray = num.split("")
+//   var suma = 0
+//   for(var i = 0; i < nuevoArray.length; i++) {
+//     suma = suma + nuevoArray[i] * 2 ** (nuevoArray.length - 1 - i)
+//     // es lo mismo que hacer sum+=
+//   } 
+//   return suma;
+
+//Alternativa segundo ejercicio :
+
