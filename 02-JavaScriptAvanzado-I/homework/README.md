@@ -14,15 +14,15 @@ var b = 10;
 var c = function(a, b, c) {
   var x = 10;
   console.log(x); // aca tiraria el valor de 10 para x (por que está definido dentro del contexto)
-  console.log(a);// aca tiraria el valor de 5 para a (ya que no lo encuentra en su contexto por lo cual le pide la info al contexto global)
+  console.log(a);// aca tiraria el valor de 8 para a (ya que las declara en la funcion, entonces les guarda un lugar en memoria, y despues llama la función con valor 8)
   var f = function(a, b, c) {
     b = a;
-    console.log(b);// acá imprime el valor de 5
+    console.log(b);// acá imprime el valor de 8
     b = c;
     var x = 5;
   }
   f(a,b,c);
-  console.log(b);// imprime el valor de 10 para b
+  console.log(b);// imprime el valor de 9 para b
 }
 c(8,9,10);
 console.log(b);//aca imprimiría el valor de 10 para b
@@ -30,10 +30,10 @@ console.log(x);//acá imprimiría el valor de 1 para x
 ```
 
 ```javascript
-console.log(bar);//imprime undefined
-console.log(baz);//imprime undefined 
-foo();
-function foo() { console.log('Hola!'); }//no imprime nada de momento
+console.log(bar);//imprime undefined(por que en el hoisting se declaro pero no se aplico valor)
+console.log(baz);//imprime error(por que no está declarada en el hoisting)
+foo();//imprime "Hola!"(por que en el hoisting se leyó la función)
+function foo() { console.log('Hola!'); }
 var bar = 1;
 baz = 2;
 ```
@@ -43,7 +43,7 @@ var instructor = "Tony";
 if(true) {
     var instructor = "Franco";
 }
-console.log(instructor);//imprime el "Franco"
+console.log(instructor);//imprime "Franco"
 ```
 
 ```javascript
@@ -83,10 +83,10 @@ console.log(pm);//imprime "Franco"
 "4px" - 2//devuelve "4px-2"
 7 / 0// devuelve infinity
 {}[0]// devuelve [0]
-parseInt("09")// devuelve el numero 09
-5 && 2// devuelve 2
+parseInt("09")// devuelve el numero 9
+5 && 2// devuelve 2(devuelve el ultimo true)
 2 && 5// devuelve 5
-5 || 0// devuelve 5
+5 || 0// devuelve 5(devuelve el primero que sea true)
 0 || 5// devuelve 5
 [3]+[3]-[10]// devuelve 23
 3>2>1// devuelve false (por que 3>2=true, y true=1 y 1>1 es false)
@@ -130,7 +130,7 @@ function getFood(food) {
 }
 
 getFood(false);//el output del codigo es:
-//"Meow Mix"
+//"undefined"(por que el se aplica hoisting y declara el var de la funcion pero no se le asigna valor pq no pasa el true, entonces quedó declarada la variable pero no con valor)
 ```
 
 
@@ -155,7 +155,7 @@ console.log(obj.prop.getFullname());
 var test = obj.prop.getFullname;
 
 console.log(test());
-//"Juan Perez"
+//undefined (por que en el global no se guardo como this.fullname, por lo cual no está definido)
 ```
 
 ### Event loop
