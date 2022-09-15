@@ -47,13 +47,13 @@ function cacheFunction(cb) {
 
   *///PRESTAR ESPECIAL ATENCION A ESTE EJERCICIO QUE COSTÓ
  let cache = {}
- return function (propiedad) {
-  if(cache.hasOwnProperty(propiedad)){
-    return cache[propiedad]
+ return function (argumento) {
+  if(cache.hasOwnProperty(argumento)){
+    return cache[argumento]
   }
   else {
-    cache[propiedad] = cb(propiedad)
-    return cache[propiedad]
+    cache[argumento] = cb(argumento)
+    return cache[argumento]
   }
  } 
 }
