@@ -56,7 +56,7 @@ Queue.prototype.enqueue = function (num) {
   this.array.unshift(num)
 }
 Queue.prototype.dequeue = function () {
-  if (this.array.length === 0) {
+  if (this.array.length === 0) {// this.array.length === 0  ------>  !this.array.length
     return undefined
   }
   else {
