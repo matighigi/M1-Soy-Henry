@@ -10,7 +10,7 @@
 
   El ábrol utilizado para hacer los tests se encuentra representado en la imagen bst.png dentro del directorio homework.
 */
-
+//REVISAR PROFUNDAMENTE ESTE EJERCICIO, SOBRE TODO LOS ULTIMOS METODOS
 function BinarySearchTree(value) {
   this.value = value //nodo raiz
   this.left = null
@@ -21,60 +21,65 @@ BinarySearchTree.prototype.size = function () {
   if (!this.left && !this.right) {
     return 1
   } 
-  else if (this.left && !this.right) {
+
+  if (this.left && !this.right) {
     return this.left.size() + 1
   } 
-  else if (!this.left && this.right) {
+
+  if (!this.left && this.right) {
     return this.right.size() + 1
   } 
-  else {
+
+  if (this.left && this.right) {
     return this.left.size() + this.right.size() + 1
   }
+  
 }
-BinarySearchTree.prototype.insert = function (v) {
-  let nodo = new BinarySearchTree(v)
 
+BinarySearchTree.prototype.insert = function (v) {//code review
   if(v > this.value) {
-    if(this.right !== null) {
-      this.right.insert(v)
+    if(!this.right) {
+      this.right = new BinarySearchTree(v)
     }
     else {
-      this.right = nodo
+      this.right.insert(v) 
     }
   }
 
   if(v < this.value) {
-    if(this.left !== null) {
-      this.left.insert(v)
+    if(!this.left) {
+      this.left = new BinarySearchTree(v)
     }
     else {
-      this.left = nodo
+      this.left.insert(v)
     }
   }
 }
-BinarySearchTree.prototype.contains = function (v) {
-  if(this.value == v){
-    return true;
+
+BinarySearchTree.prototype.contains = function (value) {//code review
+  if (value === this.value) {
+    return true
   }
 
-  if(this.value < v){
-    if(this.right){
-      return this.right.contains(v);
-    } 
-    else {
-      return false;
+  if (value > this.value) {
+    if(!this.right) {
+      return false
     }
-  } 
-
-  else {
-    if(this.left){
-      return this.left.contains(v);
-    } 
     else {
-      return false;
+      return this.right.contains(value)
     }
   }
-}    
+
+  if (value < this.value) {
+    if(!this.left) {
+      return false
+    }
+    else {
+      return this.left.contains(value)
+    }
+  }
+}
+   
 BinarySearchTree.prototype.depthFirstForEach = function (cb, order) {
   if(order === "pre-order"){ 
     //root - izquierda - derecha
@@ -110,21 +115,21 @@ BinarySearchTree.prototype.depthFirstForEach = function (cb, order) {
     }
   }
 }
-BinarySearchTree.prototype.breadthFirstForEach = function (x, array=[]) {
+BinarySearchTree.prototype.breadthFirstForEach = function (cb, array=[]) {
   if(this.left){ 
-    array.unshift(this.left); 
+    array.push(this.left); 
   }
 
   if(this.right){ 
-    array.unshift(this.right); 
+    array.push(this.right); 
   }
 
-  x(this.value);
+  cb(this.value);
 
   if(array.length > 0){ 
-    array.pop().breadthFirstForEach(x, array); 
+    array.shift().breadthFirstForEach(cb, array); 
   }
-}
+}//REVISAR PROFUNDAMENTE ESTE EJERCICIO, SOBRE TODO LOS ULTIMOS METODOS
 
 // No modifiquen nada debajo de esta linea
 // --------------------------------
