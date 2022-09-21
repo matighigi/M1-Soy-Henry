@@ -97,16 +97,23 @@ function selectionSort(array) {
     let min = i;
     for(let j = i+1; j < array.length; j++){
         if(array[j] < array[min]) {
+          //si min+1 es menor al minimo
             min=j;
+          //el nuevo minimo sera el valor encontrado en min+1
         }
      }
-     if (min !== i) {
-         let aux = array[i]; 
-         array[i] = array[min];
-         array[min] = aux; 
+    if (min !== i) {
+      //si el nuevo min es distinto a i(anterior minimo)
+        let aux = array[i]; 
+        //guardamos en un auxiliar el valor de i(anterior min)
+        array[i] = array[min];
+        //suplantamos el valor de i(anterior min) por el valor de min(nuevo minimo)
+        array[min] = aux; 
+        //suplantamos el valor de min (nuevo minimo) por el valor de i(anterior min)
     }
-}
-return array;
+  }
+  //realiza las iteracione necesarias para terminar de ordenar el array de menor a mayor
+  return array;
 }
 
 
