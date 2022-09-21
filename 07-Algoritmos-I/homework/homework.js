@@ -1,12 +1,45 @@
 'use strict'
 // No cambies los nombres de las funciones.
 
+/*
+function selectionSort(array) {
+  // Implementar el método conocido como selectionSort para ordenar de menor a mayor
+  // el array recibido como parámetro utilizando dos arreglos
+  // Devolver el array ordenado resultante
+  // Tu código:
+  for(let i = 0; i < array.length; i++) {
+      let min = i;
+      for(let j = i+1; j < array.length; j++){
+          if(array[j] < array[min]) {
+              min=j;
+          }
+       }
+       if (min != i) {
+           let tmp = array[i]; 
+           array[i] = array[min];
+           array[min] = tmp; 
+      }
+  }
+  return array;
+} */
 function factorear(num) {
   // Factorear el número recibido como parámetro y devolver en un array
   // los factores por los cuales se va dividiendo a dicho número (De menor a mayor)
   // Ej: factorear(180) --> [1, 2, 2, 3, 3, 5] Ya que 1x2x2x3x3x5 = 180 y son todos números primos
   // Tu código:
 
+  let array = [1]   //num = 10
+  let div = 2
+  while (num > 1) {  //acá entra
+    if(num % div === 0) {  //10 % 2 = 0
+      array.push(div) //array = [1, 2]
+      num = num / div// num = 10 / 2 = 5
+    }
+    else {
+      div++
+    }
+  }
+  return array 
 }
 
 function bubbleSort(array) {
@@ -14,7 +47,21 @@ function bubbleSort(array) {
   // el array recibido como parámetro
   // Devolver el array ordenado resultante
   // Tu código:
-
+  for (let i = 0; i < array.length; i++) {
+    for(let j = 0; j < array.length; j++) {
+      if (array[j] > array [j+1]){ 
+        //si el array en posicion J es mayor que el siguiente
+        let aux = array [j]
+        //guardamos en un auxiliar el valor de J (que es mayor a J+1)
+        array[j] = array [j+1]
+        //en la posicion J transformamos su antiguo valor (mayor) por el de J + 1 (menor)
+        array[j+1] = aux
+        //en la posicion siguiente a J transformamos el antiguo valor (menor) por el del auxiliar (mayor, que era el anterior)
+      }
+    }
+  }
+  //realiza las iteracione necesarias para terminar de ordenar el array de menor a mayor
+  return array
 }
 
 
@@ -23,7 +70,21 @@ function insertionSort(array) {
   // el array recibido como parámetro utilizando arreglos
   // Devolver el array ordenado resultante
   // Tu código:
-
+  for(let i = 0; i < array.length; i++) {
+    for(let j = 0; j < array.length; j++) {
+      if (array[j] > array [j+1]) {
+        //si el array en posicion J es mayor que el siguiente
+        let aux = array [j+1]
+        //guardamos en un auxiliar el valor J+1 (que es menor al anterior)
+        array [j+1] = array[j]
+        //suplantamos el valor de J+1 (menor) por el valor de J (mayor)
+        array [j] = aux
+        //suplantamos el valor de J (mayor) por el de J+1 (menor)
+      }
+    }
+  }
+  //realiza las iteracione necesarias para terminar de ordenar el array de menor a mayor
+  return array
 }
 
 
@@ -32,7 +93,20 @@ function selectionSort(array) {
   // el array recibido como parámetro utilizando dos arreglos
   // Devolver el array ordenado resultante
   // Tu código:
-
+  for(let i = 0; i < array.length; i++) {
+    let min = i;
+    for(let j = i+1; j < array.length; j++){
+        if(array[j] < array[min]) {
+            min=j;
+        }
+     }
+     if (min !== i) {
+         let aux = array[i]; 
+         array[i] = array[min];
+         array[min] = aux; 
+    }
+}
+return array;
 }
 
 
