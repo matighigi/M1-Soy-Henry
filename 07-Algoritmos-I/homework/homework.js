@@ -1,34 +1,13 @@
 'use strict'
 // No cambies los nombres de las funciones.
 
-/*
-function selectionSort(array) {
-  // Implementar el método conocido como selectionSort para ordenar de menor a mayor
-  // el array recibido como parámetro utilizando dos arreglos
-  // Devolver el array ordenado resultante
-  // Tu código:
-  for(let i = 0; i < array.length; i++) {
-      let min = i;
-      for(let j = i+1; j < array.length; j++){
-          if(array[j] < array[min]) {
-              min=j;
-          }
-       }
-       if (min != i) {
-           let tmp = array[i]; 
-           array[i] = array[min];
-           array[min] = tmp; 
-      }
-  }
-  return array;
-} */
 function factorear(num) {
   // Factorear el número recibido como parámetro y devolver en un array
   // los factores por los cuales se va dividiendo a dicho número (De menor a mayor)
   // Ej: factorear(180) --> [1, 2, 2, 3, 3, 5] Ya que 1x2x2x3x3x5 = 180 y son todos números primos
   // Tu código:
-
-  let array = [1]   //num = 10
+                    //num = 10
+  let array = [1] //el array inicia con el 1 por que es primo de todos los numeros
   let div = 2
   while (num > 1) {  //acá entra
     if(num % div === 0) {  //10 % 2 = 0
@@ -36,7 +15,7 @@ function factorear(num) {
       num = num / div// num = 10 / 2 = 5
     }
     else {
-      div++
+      div++   //  2--->3
     }
   }
   return array 
@@ -60,7 +39,7 @@ function bubbleSort(array) {
       }
     }
   }
-  //realiza las iteracione necesarias para terminar de ordenar el array de menor a mayor
+  //realiza las iteraciones necesarias para terminar de ordenar el array de menor a mayor
   return array
 }
 
