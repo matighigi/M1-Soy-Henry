@@ -7,6 +7,7 @@ function quickSort(array) {
   // Devolver el array ordenado resultante
   // Tu código:
   if(array.length <= 1) {
+    //caso base
     //si la longitud del array es de un elemento o menos
     return array
   }
@@ -14,7 +15,8 @@ function quickSort(array) {
   //el pivot será una posicion aleatoria de algun elemento perteneciente al array 
   let left = []
   let right = []
-  //creamos los arrays left y right para guardar valores menores y mayores respectivamente
+  let equals = []
+  //creamos los arrays left y right para guardar valores menores y mayores respectivamente, y el array equals para guardar los iguales
   for(let i = 0; i < array.length; i++) {
     if(i !== pivot) {
       //si la posicion i es distinta de la posicion de pivot
@@ -27,10 +29,13 @@ function quickSort(array) {
         //si el elemento en la posicion i es mayor al elemento en la posicion de pivot, pushear dicho elemento en el array right
       }
     }
+    else {
+      equals.push(array[i])
+    }
   }
-  let nuevoArray = quickSort(left).concat(array[pivot]).concat(quickSort(right))
+  let nuevoArray = quickSort(left).concat(equals).concat(quickSort(right))//declaramos este nuevoArray o direcamente lo hacemos con return
   //aplicamos recursividad invocando a la misma funcion "quickSort" para los arrays left y right respectivamente
-  //posterior a lo anteriormente mencionado, aplicamos el metodo .concat para concatenar en orden el array left, el pivot y el array right para poseerlos ahora si ordenados
+  //posterior a lo anteriormente mencionado, aplicamos el metodo .concat para concatenar en orden el array left, el array equals y el array right para poseerlos, ahora si, ordenados
   return nuevoArray
 }
 
@@ -48,13 +53,13 @@ function mergeSort(array) {
   //esta variable nos permite tomar la longitud del array y dividirlo en dos 
   let left = array.slice(0, centr)
   //left nos agrupa la primera mitad del array en un nuevo array
-  let right = array.slice(centr)
+  let right = array.slice(centr)// al metodo slice si no le pasamos(como en este caso)un limite final, el limite va a ser el ultimo elemento del array incluido
   //right nos agrupa la segunda mitad del array en un nuevo array
   
   function concatenación (left, right) { //se crea una función que trabaje con los arrays left y right 
     let nuevoArray = []
     //se crea un nuevo array en donde se van a pushear los valores
-    while(left.length > 0 && right.length > 0) {
+    while(left.length > 0 && right.length > 0) {//es lo mismo que poner While (left.length && right.length)
       //mientras haya elementos en left right
       if(left[0] < right[0]) {
         //si el valor en posicion 0 de left es menor al de right
