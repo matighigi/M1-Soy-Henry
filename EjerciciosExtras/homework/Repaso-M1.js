@@ -16,7 +16,20 @@ const {
 
 var countArray = function(array) {
     // Tu código aca:
-    
+    let sum = 0;
+
+    for (let i = 0; i < array.length; i++) {
+        if(Array.isArray(array[i])) {
+        //si el elemento dentro de array es otro array    
+            sum += countArray(array[i]);
+            //suma la recursion de la misma función
+        }
+        else {
+            sum += array[i];
+            //sumar normalmente cada valor
+        }
+    }
+    return sum;
 }
 
 
@@ -37,9 +50,23 @@ var countArray = function(array) {
 // dentro de a tenemos 3 propiedades mas, luego a3 tiene otras 3 y por ultimo c tiene una extra.
 // Propiedades: a, a1, a2, a3, f, a, c, o, b, c --> 10 en total
 
-var countProps = function(obj) {
-    // Tu código aca:
+var countProps = function(obj) {//puede usarse object.keys
+    // Tu código aca: 
+    let counter = 0
 
+    for(let prop in obj) {
+        counter++
+        //incrementa el contador ya que encuentra propiedad
+        if(typeof obj[prop] === "object" ) {//(****)typeof de un array tambien lo toma como objeto entonces creamos el otro condicional para asegurarnos que no es un array
+            //si la propiedad de obj es otro objeto
+            if(!Array.isArray(obj[prop])) {
+                //si no es un array (****)
+                counter += countProps(obj[prop])
+                //al cumplirse hacemos recursion aplicando nuevamente la funcion para verificar si encontramos nuevas propiedades dentro 
+            }
+        }
+    }
+    return counter
 }
 
 
@@ -53,7 +80,23 @@ var countProps = function(obj) {
 
 LinkedList.prototype.changeNotNumbers = function(){
     // Tu código aca:
+    let counter = 0
+    let current = this.head
 
+    while(current) {
+        //mientras exista un this.head
+        if(isNaN(Number(current.value))) {
+        //si no es un numero    
+            counter++
+            //aumentamos contador
+            current.value = "Kiricocho"
+            //cambiamos el valor a "Kiricocho"
+        }
+        current = current.next
+        //sino seguimos recorriendo la lista
+    }
+    return counter
+    //retornamos el contador
 }
 
 
@@ -67,8 +110,28 @@ LinkedList.prototype.changeNotNumbers = function(){
 
 var mergeQueues = function(queueOne, queueTwo) {
     // Tu código aca:
+    let queue = new Queue();
+    //en DS ya está creada la instancia de las Queue
+    while(queueOne.size() || queueTwo.size()) {
+    //si existen elementos     
+        let firstElement = queueOne.dequeue();
+        let secondElement = queueTwo.dequeue();
+        //extraemos elementos
 
+        if(firstElement){ 
+        //si existen elementos en firstElement
+            queue.enqueue(firstElement)
+            //asignamos los elementos a queue
+        }
+        if(secondElement) {
+        //si existen elementos en secondElement    
+            queue.enqueue(secondElement)
+            //asignamos los elementos a queue
+        }
+    }
+    return queue;
 }
+
 
 
 // Implementar la funcion closureMult que permita generar nuevas funciones que representen
@@ -82,14 +145,26 @@ var mergeQueues = function(queueOne, queueTwo) {
 
 var closureMult = function(multiplier) {
     // Tu código aca:
-
+    return function(num) {
+    //retornamos funcion por que es clousures, con un num de parametro    
+        return num * multiplier
+        //operamos ese numero con el multiplicador
+    }
 }
 
 // Implementar el método sum dentro del prototype de BinarySearchTree
 // que debe retornar la suma total de los valores dentro de cada nodo del arbol
 BinarySearchTree.prototype.sum = function() {
     // Tu código aca:
-
+    //la suma está definida en el DS
+    if(!this.right && !this.left) return this.value;
+    //si no hay valores en el right y left devolver el valor del root
+    if(!this.right && this.left) return this.value + this.left.sum();
+    //si no hay valores en el right devolver la suma del root y left
+    if(this.right && !this.left) return this.value + this.right.sum();
+    //si no hay valores en el left devolver la suma del root y right
+    if(this.right && this.left) return this.value + this.right.sum() + this.left.sum();
+    //si hay elementosm delvolver la suma del root, de right y left
 }
 
 module.exports = {
